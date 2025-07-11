@@ -1,0 +1,24 @@
+{
+  "name": "funday-app",
+  "productName": "Funday App",
+  "version": "1.0.0",
+  "description": "Приложение для FundayMC",
+  "author": "Ga1maz.ru",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "ru.ga1maz.fundayapp",
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    }
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^26.0.12"
+  }
+}

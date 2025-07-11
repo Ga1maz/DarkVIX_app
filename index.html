@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FunID</title>
+<style>
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #111;
+    color: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .titlebar {
+    -webkit-app-region: drag;
+    height: 32px;
+    background: #1e1e1e;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .window-controls {
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    height: 32px;
+    align-items: center;
+    -webkit-app-region: no-drag;
+  }
+
+  .title {
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+    color: #fff;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .control {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+  }
+
+  .control:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+  }
+
+  .control svg {
+    width: 8px;
+    height: 8px;
+    fill: #111;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .control:hover svg {
+    opacity: 1;
+  }
+
+  .close {
+    background: #ff5f57;
+  }
+
+  .minimize {
+    background: #ffbd2e;
+  }
+
+  .maximize {
+    background: #28c840;
+  }
+
+  webview {
+    flex: 1;
+    border: none;
+    display: inline-flex;
+    width: 100%;
+    height: calc(100vh - 32px);
+  }
+</style>
+</head>
+<body>
+  <div class="titlebar">
+    <div class="window-controls">
+      <div class="control close" onclick="api.controlWindow('close')"></div>
+      <div class="control minimize" onclick="api.controlWindow('minimize')"></div>
+      <div class="control maximize" onclick="api.controlWindow('maximize')"></div>
+    </div>
+    <div class="title">FunID</div>
+  </div>
+
+  <webview 
+    src="https://fundaymc.su" 
+    useragent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
+    allowpopups
+    disablewebsecurity
+  ></webview>
+
+<script>
+  // Добавляем иконки кнопкам
+  document.querySelector('.close').innerHTML =
+    `<svg viewBox="0 0 10 10"><path d="M1 1 L9 9 M9 1 L1 9" stroke="#111" stroke-width="2"/></svg>`;
+  document.querySelector('.minimize').innerHTML =
+    `<svg viewBox="0 0 10 10"><rect x="1" y="4.5" width="8" height="1"/></svg>`;
+  document.querySelector('.maximize').innerHTML =
+    `<svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="none" stroke="#111" stroke-width="1.5"/></svg>`;
+
+  // API для управления окном
+  window.api = {
+    controlWindow: (action) => {
+      const { ipcRenderer } = require('electron');
+      ipcRenderer.send('window-control', action);
+    }
+  };
+</script>
+</body>
+</html>
