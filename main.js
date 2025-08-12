@@ -5,20 +5,18 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1280,
     height: 800,
-    icon: path.join(__dirname, 'resources', 'icon.png'),
+    icon: path.join(__dirname, 'build', 'icon.ico'),
     frame: false,
     titleBarStyle: 'hidden',
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      webviewTag: true // Включаем поддержку webview
+      webviewTag: true
     }
   });
 
-  // Загружаем HTML с кастомным интерфейсом
   win.loadFile('index.html');
 
-  // Обработка команд управления окном
   ipcMain.on('window-control', (event, action) => {
     switch (action) {
       case 'close':

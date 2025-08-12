@@ -1,9 +1,9 @@
 {
-  "name": "funday-app",
-  "productName": "Funday App",
-  "version": "1.0.0",
-  "description": "Приложение для FundayMC",
-  "author": "Ga1maz.ru",
+  "name": "darkvix-app",
+  "productName": "DarkVIX panel App",
+  "version": "1.0.2",
+  "description": "Приложение для DarkVIX",
+  "author": "DarkVIX.ru",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -11,7 +11,7 @@
     "dist": "electron-builder"
   },
   "build": {
-    "appId": "ru.ga1maz.fundayapp",
+    "appId": "ru.ga1maz.darkvixapp",
     "win": {
       "target": "nsis",
       "icon": "build/icon.ico"

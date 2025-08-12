@@ -9,11 +9,11 @@ FILETYPE 0x1
         BLOCK "040904b0"
         {
             VALUE "CompanyName", "Ga1maz.ru"
-            VALUE "FileDescription", "Funday App"
-            VALUE "FileVersion", "1.0.0"
+            VALUE "FileDescription", "DarkVIX Hub"
+            VALUE "FileVersion", "1.0.2"
             VALUE "LegalCopyright", "Copyright © 2025 Ga1maz.ru"
-            VALUE "ProductName", "Funday App"
-            VALUE "ProductVersion", "1.0.0"
+            VALUE "ProductName", "DarkVIX Hub"
+            VALUE "ProductVersion", "1.0.2"
         }
     }
 }
